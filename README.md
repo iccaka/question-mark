@@ -14,4 +14,5 @@
 See also the list of [contributors](https://github.com/iccaka/question-mark/graphs/contributors) who participated in this project.
 
 ## License
+
 This project is licensed under the MIT License - *see the* [LICENSE.md](https://github.com/iccaka/question-mark/blob/master/LICENSE.md) *file for details.*
