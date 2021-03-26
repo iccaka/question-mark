@@ -9,7 +9,7 @@
 ## Authors
 
 * **Hristo Mitsev** - *backend work* - [iccaka](https://github.com/iccaka)
-* **Konstantin Stoianov** - *frontedn work* - [stoianov00](https://github.com/stoianov00)
+* **Konstantin Stoyanov** - *frontedn work* - [stoianov00](https://github.com/stoianov00)
 
 See also the list of [contributors](https://github.com/iccaka/question-mark/graphs/contributors) who participated in this project.
 
