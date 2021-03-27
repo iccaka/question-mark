@@ -12,6 +12,9 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "email")
+    private String email;
+
     public User(){}
 
     public void setId(Long id) {
