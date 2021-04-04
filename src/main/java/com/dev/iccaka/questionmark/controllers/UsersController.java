@@ -1,7 +1,7 @@
 package com.dev.iccaka.questionmark.controllers;
 
 import com.dev.iccaka.questionmark.entities.User;
-import com.dev.iccaka.questionmark.services.UserService;
+import com.dev.iccaka.questionmark.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UsersController {
 
     @Autowired
-    UserService userService;
+    IUserService userService;
 
     @GetMapping("/listAll")
     public List<User> listUsers(){
@@ -34,6 +34,6 @@ public class UsersController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(){
-
+        
     }
 }
