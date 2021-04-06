@@ -6,8 +6,8 @@ import com.dev.iccaka.questionmark.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -37,8 +37,15 @@ public class UsersController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(WebRequest request, Model model){
-        // TODO register user
+    public ResponseEntity<?> registerUser(@ModelAttribute("user") @Validated UserDto userDto,
+                                          HttpServletRequest request, Errors errors){
+
+        try{
+            User registered = userService.registerUser(userDto);
+        }
+        catch (UserAlreadyExistsException uaeEx){
+
+        }
 
         return ResponseEntity.ok("");
     }
