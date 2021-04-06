@@ -48,10 +48,10 @@ public class UsersController {
             User registered = userService.registerUser(userDto);
         }
         catch (UserAlreadyExistsException uaeEx){
-            modelAndView.addObject("message", "An account for that username/email already exists!")
+            modelAndView.addObject("message", "An account for that username/email already exists!");
             return modelAndView;
         }
 
-        return ResponseEntity.ok("");
+        return new ModelAndView("successRegister", "user", userDto);
     }
 }
