@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -36,7 +37,7 @@ public class UsersController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(){
+    public ResponseEntity<?> registerUser(WebRequest request, Model model){
         // TODO register user
 
         return ResponseEntity.ok("");
