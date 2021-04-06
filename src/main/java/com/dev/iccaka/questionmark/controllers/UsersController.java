@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -17,6 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/users")
 public class UsersController {
+
+    ModelAndView modelAndView;
 
     @Autowired
     IUserService userService;
@@ -38,14 +41,15 @@ public class UsersController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@ModelAttribute("user") @Validated UserDto userDto,
+    public ModelAndView registerUser(@ModelAttribute("user") @Validated UserDto userDto,
                                           HttpServletRequest request, Errors errors){
 
         try{
             User registered = userService.registerUser(userDto);
         }
         catch (UserAlreadyExistsException uaeEx){
-
+            modelAndView.addObject("message", "An account for that username/email already exists!")
+            return modelAndView;
         }
 
         return ResponseEntity.ok("");
