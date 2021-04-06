@@ -2,6 +2,7 @@ package com.dev.iccaka.questionmark.services;
 
 import com.dev.iccaka.questionmark.dtos.UserDto;
 import com.dev.iccaka.questionmark.entities.User;
+import com.dev.iccaka.questionmark.exceptions.UserAlreadyExistsException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +29,17 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User registerUser(UserDto userDto) {
+    public User registerUser(UserDto userDto) throws UserAlreadyExistsException {
+
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
         user.setFirstName(userDto.getFirstName());
 
         return this.repository.save(user);
+    }
+
+    private boolean emailExist(String email){
+        return this.repository.findByEmail(email) != null;
     }
 }
