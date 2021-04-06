@@ -33,6 +33,9 @@ public class UserService implements IUserService {
 
     @Override
     public User registerUser(UserDto userDto) throws UserAlreadyExistsException {
+        if(this.emailExist(userDto.getEmail())){
+            throw new UserAlreadyExistsException("There's an account with that email address: " + userDto.getEmail());
+        }
 
         User user = new User();
         user.setEmail(userDto.getEmail());
