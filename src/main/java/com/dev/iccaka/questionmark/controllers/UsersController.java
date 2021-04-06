@@ -2,6 +2,7 @@ package com.dev.iccaka.questionmark.controllers;
 
 import com.dev.iccaka.questionmark.dtos.UserDto;
 import com.dev.iccaka.questionmark.entities.User;
+import com.dev.iccaka.questionmark.exceptions.UserAlreadyExistsException;
 import com.dev.iccaka.questionmark.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
