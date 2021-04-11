@@ -34,3 +34,4 @@ build/
 
 /question-mark-backend/src/main/resources/application.properties
 /question-mark-backend/src/main/resources/data.sql
+/question-mark-backend/src/main/resources/static/
