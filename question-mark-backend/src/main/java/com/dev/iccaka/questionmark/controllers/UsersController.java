@@ -30,7 +30,7 @@ public class UsersController {
     }
 
     @GetMapping("/find/id/{id}")
-    public ResponseEntity<?> findUserById(@PathVariable String id){
+    public ResponseEntity<?> findById(@PathVariable String id){
         long parsedId;
 
         try{
