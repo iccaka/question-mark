@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  margin-left: 15px;
+}
+
+h1 {
+  font-family: Arial, sans-serif;
+}
+
+label {
+  display: block;
+  width: 7em;
+  color: #607d8b;
+  font-weight: bold;
+}
+
+input {
+  height: 2em;
+  font-size: 1em;
+}
