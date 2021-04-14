@@ -50,6 +50,14 @@ public class User {
     @Column(name = "dateOfLastLogin")
     private LocalDateTime dateOfLastLogin;
 
+    @OneToOne
+    @JoinColumn(name = "roleid")
+    private Role roleid;
+
+    @OneToOne
+    @JoinColumn(name = "countryid")
+    private Country countryid;
+
     public User(){}
 
     public void setId(Long id) {
