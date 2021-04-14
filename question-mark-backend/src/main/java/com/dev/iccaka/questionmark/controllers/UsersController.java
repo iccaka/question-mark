@@ -29,13 +29,22 @@ public class UsersController {
         return userService.listUsers();
     }
 
-    @GetMapping("/find/id")
-    public ResponseEntity<?> findUserById(@RequestParam Long id){
-        if(id <= 0){
-            return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
+    @GetMapping("/find/id/{id}")
+    public ResponseEntity<?> findUserById(@PathVariable String id){
+        long parsedId;
+
+        try{
+            parsedId = Long.parseLong(id);
+
+            if(parsedId <= 0){
+                return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
+            }
+        }
+        catch (NumberFormatException nfe){
+            return ResponseEntity.badRequest().body("ID format is not valid!");
         }
 
-        Optional<User> result = userService.findById(id);
+        Optional<User> result = userService.findById(parsedId);
 
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.badRequest().body("User with such ID not found!");
     }
