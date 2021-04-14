@@ -4,6 +4,7 @@ import com.dev.iccaka.questionmark.dtos.UserDto;
 import com.dev.iccaka.questionmark.entities.User;
 import com.dev.iccaka.questionmark.exceptions.UserAlreadyExistsException;
 import com.dev.iccaka.questionmark.repositories.UsersRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,17 +37,8 @@ public class UserService implements IUserService {
             throw new UserAlreadyExistsException("There's an account with that email address: " + userDto.getEmail());
         }
 
-        User user = new User();
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
-        user.setUsername(userDto.getUsername());
-        user.setFirstName(userDto.getFirstName());
-        user.setMiddleName(userDto.getMiddleName());
-        user.setLastName(userDto.getLastName());
-        user.setTitle(userDto.getTitle());
-        user.setDescription(userDto.getDescription());
-        user.setWebsite(userDto.getWebsite());
-        user.setUniversity(userDto.getUniversity());
+        ModelMapper modelMapper = new ModelMapper();
+        User user = modelMapper.map(userDto, User.class);
 
         return this.repository.save(user);
     }
