@@ -1,6 +1,8 @@
 package com.dev.iccaka.questionmark.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -38,6 +40,15 @@ public class User {
 
     @Column(name = "university")
     private String university;
+
+    @Column(name = "dateOfBirth")
+    private LocalDate dateOfBirth;
+
+    @Column(name = "dateOfRegistration")
+    private LocalDateTime dateOfRegistration;
+
+    @Column(name = "dateOfLastLogin")
+    private LocalDateTime dateOfLastLogin;
 
     public User(){}
 
