@@ -147,4 +147,44 @@ public class User {
     public void setUniversity(String university) {
         this.university = university;
     }
+
+    public LocalDate getDateOfBirth() {
+        return this.dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public LocalDateTime getDateOfRegistration() {
+        return this.dateOfRegistration;
+    }
+
+    public void setDateOfRegistration(LocalDateTime dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
+    }
+
+    public LocalDateTime getDateOfLastLogin() {
+        return this.dateOfLastLogin;
+    }
+
+    public void setDateOfLastLogin(LocalDateTime dateOfLastLogin) {
+        this.dateOfLastLogin = dateOfLastLogin;
+    }
+
+    public Role getRoleid() {
+        return this.roleid;
+    }
+
+    public void setRoleid(Role roleid) {
+        this.roleid = roleid;
+    }
+
+    public Country getCountryid() {
+        return this.countryid;
+    }
+
+    public void setCountryid(Country countryid) {
+        this.countryid = countryid;
+    }
 }
