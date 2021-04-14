@@ -14,5 +14,7 @@ public interface IUserService {
 
     Optional<User> findById(Long id);
 
+    Optional<User> findByUsername(String username);
+
     User registerUser(UserDto userDto) throws UserAlreadyExistsException;
 }
