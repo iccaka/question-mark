@@ -29,15 +29,34 @@ public class UsersController {
         return userService.listUsers();
     }
 
-    @GetMapping("/find/id")
-    public ResponseEntity<?> findUserById(@RequestParam Long id){
-        if(id <= 0){
-            return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
+    @GetMapping("/find/id/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") String id){
+        long parsedId;
+
+        try{
+            parsedId = Long.parseLong(id);
+
+            if(parsedId <= 0){
+                return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
+            }
+        }
+        catch (NumberFormatException nfe){
+            return ResponseEntity.badRequest().body("ID format is not valid!");
         }
 
-        Optional<User> result = userService.findById(id);
+        Optional<User> result = userService.findById(parsedId);
 
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.badRequest().body("User with such ID not found!");
+    }
+
+    @GetMapping("/find/{username}")
+    public ResponseEntity<?> findByUsername(@PathVariable("username") String username){
+        if(username.isBlank() || username == null){
+            return ResponseEntity.badRequest().body("You haven't entered anything to search for!");
+        }
+
+        Optional<User> result = userService.findByUsername(username.toLowerCase());
+        return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.ok("There's no user with such username.");
     }
 
     @PostMapping("/register")
