@@ -1,6 +1,8 @@
 package com.dev.iccaka.questionmark.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -38,6 +40,23 @@ public class User {
 
     @Column(name = "university")
     private String university;
+
+    @Column(name = "dateOfBirth")
+    private LocalDate dateOfBirth;
+
+    @Column(name = "dateOfRegistration")
+    private LocalDateTime dateOfRegistration;
+
+    @Column(name = "dateOfLastLogin")
+    private LocalDateTime dateOfLastLogin;
+
+    @OneToOne
+    @JoinColumn(name = "roleid")
+    private Role roleid;
+
+    @OneToOne
+    @JoinColumn(name = "countryid")
+    private Country countryid;
 
     public User(){}
 
@@ -127,5 +146,45 @@ public class User {
 
     public void setUniversity(String university) {
         this.university = university;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return this.dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public LocalDateTime getDateOfRegistration() {
+        return this.dateOfRegistration;
+    }
+
+    public void setDateOfRegistration(LocalDateTime dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
+    }
+
+    public LocalDateTime getDateOfLastLogin() {
+        return this.dateOfLastLogin;
+    }
+
+    public void setDateOfLastLogin(LocalDateTime dateOfLastLogin) {
+        this.dateOfLastLogin = dateOfLastLogin;
+    }
+
+    public Role getRoleid() {
+        return this.roleid;
+    }
+
+    public void setRoleid(Role roleid) {
+        this.roleid = roleid;
+    }
+
+    public Country getCountryid() {
+        return this.countryid;
+    }
+
+    public void setCountryid(Country countryid) {
+        this.countryid = countryid;
     }
 }
