@@ -33,12 +33,12 @@ public class UserService implements IUserService {
 
     @Override
     public Optional<User> findByUsername(String username) {
-        return  this.repository.findByUsername(username);
+        return this.repository.findByUsername(username);
     }
 
     @Override
     public User registerUser(UserDto userDto) throws UserAlreadyExistsException {
-        if(this.emailExist(userDto.getEmail())){
+        if (this.emailExist(userDto.getEmail())) {
             throw new UserAlreadyExistsException("There's an account with that email address: " + userDto.getEmail());
         }
 
@@ -48,7 +48,7 @@ public class UserService implements IUserService {
         return this.repository.save(user);
     }
 
-    private boolean emailExist(String email){
+    private boolean emailExist(String email) {
         return this.repository.findByEmail(email).isPresent();
     }
 }
