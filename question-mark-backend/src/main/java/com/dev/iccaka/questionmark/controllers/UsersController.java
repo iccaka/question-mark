@@ -29,7 +29,7 @@ public class UsersController {
         return userService.listUsers();
     }
 
-    @GetMapping("/find/id/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") String id){
         long parsedId;
 
