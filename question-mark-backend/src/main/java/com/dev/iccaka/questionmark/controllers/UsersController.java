@@ -30,7 +30,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> getById(@PathVariable Long id){
         if(id <= 0){
             return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
         }
@@ -41,7 +41,7 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> findByUsername(@RequestParam(value = "username") String username){
+    public ResponseEntity<?> getByUsername(@RequestParam(value = "username") String username){
         if(username.isBlank() || username == null){
             return ResponseEntity.badRequest().body("You haven't entered anything to search for!");
         }
