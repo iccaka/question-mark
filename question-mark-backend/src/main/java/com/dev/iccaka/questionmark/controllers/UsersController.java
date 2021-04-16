@@ -49,7 +49,7 @@ public class UsersController {
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.badRequest().body("User with such ID not found!");
     }
 
-    @GetMapping("/find/{username}")
+    @GetMapping("/{username}")
     public ResponseEntity<?> findByUsername(@PathVariable("username") String username){
         if(username.isBlank() || username == null){
             return ResponseEntity.badRequest().body("You haven't entered anything to search for!");
