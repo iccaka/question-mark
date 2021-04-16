@@ -1,10 +1,15 @@
 package com.dev.iccaka.questionmark.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter @Setter @NoArgsConstructor
 public class User {
 
     @Id
@@ -57,134 +62,4 @@ public class User {
     @OneToOne
     @JoinColumn(name = "countryid")
     private Country countryid;
-
-    public User(){}
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getMiddleName() {
-        return this.middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getWebsite() {
-        return this.website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public String getUniversity() {
-        return this.university;
-    }
-
-    public void setUniversity(String university) {
-        this.university = university;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return this.dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public LocalDateTime getDateOfRegistration() {
-        return this.dateOfRegistration;
-    }
-
-    public void setDateOfRegistration(LocalDateTime dateOfRegistration) {
-        this.dateOfRegistration = dateOfRegistration;
-    }
-
-    public LocalDateTime getDateOfLastLogin() {
-        return this.dateOfLastLogin;
-    }
-
-    public void setDateOfLastLogin(LocalDateTime dateOfLastLogin) {
-        this.dateOfLastLogin = dateOfLastLogin;
-    }
-
-    public Role getRoleid() {
-        return this.roleid;
-    }
-
-    public void setRoleid(Role roleid) {
-        this.roleid = roleid;
-    }
-
-    public Country getCountryid() {
-        return this.countryid;
-    }
-
-    public void setCountryid(Country countryid) {
-        this.countryid = countryid;
-    }
 }
