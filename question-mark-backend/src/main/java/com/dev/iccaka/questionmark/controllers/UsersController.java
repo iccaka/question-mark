@@ -29,28 +29,19 @@ public class UsersController {
         return userService.listUsers();
     }
 
-    @GetMapping("/find/id/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") String id){
-        long parsedId;
-
-        try{
-            parsedId = Long.parseLong(id);
-
-            if(parsedId <= 0){
-                return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
-            }
-        }
-        catch (NumberFormatException nfe){
-            return ResponseEntity.badRequest().body("ID format is not valid!");
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getById(@PathVariable Long id){
+        if(id <= 0){
+            return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
         }
 
-        Optional<User> result = userService.findById(parsedId);
+        Optional<User> result = userService.findById(id);
 
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.badRequest().body("User with such ID not found!");
     }
 
-    @GetMapping("/find/{username}")
-    public ResponseEntity<?> findByUsername(@PathVariable("username") String username){
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getByUsername(@RequestParam(value = "username") String username){
         if(username.isBlank() || username == null){
             return ResponseEntity.badRequest().body("You haven't entered anything to search for!");
         }
