@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 
     @Id
