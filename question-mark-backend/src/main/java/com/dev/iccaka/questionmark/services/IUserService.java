@@ -12,9 +12,9 @@ public interface IUserService {
 
     List<User> listUsers();
 
-    Optional<User> findById(Long id);
+    Optional<User> getById(Long id);
 
-    Optional<User> findByUsername(String username);
+    Optional<User> getByUsername(String username);
 
     User registerUser(UserDto userDto) throws UserAlreadyExistsException;
 }
