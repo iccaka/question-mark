@@ -35,7 +35,7 @@ public class UsersController {
             return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
         }
 
-        Optional<User> result = userService.findById(id);
+        Optional<User> result = userService.getById(id);
 
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.badRequest().body("User with such ID not found!");
     }
@@ -46,7 +46,7 @@ public class UsersController {
             return ResponseEntity.badRequest().body("You haven't entered anything to search for!");
         }
 
-        Optional<User> result = userService.findByUsername(username.toLowerCase());
+        Optional<User> result = userService.getByUsername(username.toLowerCase());
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.ok("There's no user with such username.");
     }
 
