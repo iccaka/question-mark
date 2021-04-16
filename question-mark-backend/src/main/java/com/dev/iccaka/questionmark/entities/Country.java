@@ -1,8 +1,15 @@
 package com.dev.iccaka.questionmark.entities;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Country {
 
     @Id
@@ -11,22 +18,4 @@ public class Country {
 
     @Column(name = "name")
     private String name;
-
-    public Country(){}
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
