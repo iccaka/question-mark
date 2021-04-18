@@ -27,13 +27,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<User> getById(Long id) {
         return this.repository.findById(id);
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
-        return this.repository.findByUsername(username);
+    public Optional<User> getByUsername(String username) {
+        return  this.repository.getByUsername(username);
     }
 
     @Override

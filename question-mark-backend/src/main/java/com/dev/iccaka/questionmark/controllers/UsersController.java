@@ -25,7 +25,7 @@ public class UsersController {
     IUserService userService;
 
     @GetMapping("/listAll")
-    public List<User> listUsers(){
+    public List<User> listUsers() {
         return userService.listUsers();
     }
 
@@ -35,7 +35,7 @@ public class UsersController {
             return ResponseEntity.badRequest().body("IDs cannot be negative or equal to zero!");
         }
 
-        Optional<User> result = userService.findById(id);
+        Optional<User> result = userService.getById(id);
 
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.badRequest().body("User with such ID not found!");
     }
@@ -46,18 +46,17 @@ public class UsersController {
             return ResponseEntity.badRequest().body("You haven't entered anything to search for!");
         }
 
-        Optional<User> result = userService.findByUsername(username.toLowerCase());
+        Optional<User> result = userService.getByUsername(username.toLowerCase());
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.ok("There's no user with such username.");
     }
 
     @PostMapping("/register")
     public ModelAndView registerUser(@ModelAttribute("user") @Validated UserDto userDto,
-                                          HttpServletRequest request, Errors errors){
+                                     HttpServletRequest request, Errors errors) {
 
-        try{
+        try {
             User registered = userService.registerUser(userDto);
-        }
-        catch (UserAlreadyExistsException uaeEx){
+        } catch (UserAlreadyExistsException uaeEx) {
             modelAndView.addObject("message", "An account for that username/email already exists!");
             return modelAndView;
         }
