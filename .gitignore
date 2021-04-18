@@ -35,4 +35,3 @@ build/
 /question-mark-backend/src/main/resources/application.properties
 /question-mark-backend/src/main/resources/data.sql
 /question-mark-backend/src/main/resources/static/
-/question-mark-ui/target/question-mark-ui-0.0.1-SNAPSHOT.jar
