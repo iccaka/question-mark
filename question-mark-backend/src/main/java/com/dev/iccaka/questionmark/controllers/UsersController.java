@@ -25,7 +25,7 @@ public class UsersController {
     IUserService userService;
 
     @GetMapping("/listAll")
-    public List<User> listUsers(){
+    public List<User> listUsers() {
         return userService.listUsers();
     }
 
@@ -52,12 +52,11 @@ public class UsersController {
 
     @PostMapping("/register")
     public ModelAndView registerUser(@ModelAttribute("user") @Validated UserDto userDto,
-                                          HttpServletRequest request, Errors errors){
+                                     HttpServletRequest request, Errors errors) {
 
-        try{
+        try {
             User registered = userService.registerUser(userDto);
-        }
-        catch (UserAlreadyExistsException uaeEx){
+        } catch (UserAlreadyExistsException uaeEx) {
             modelAndView.addObject("message", "An account for that username/email already exists!");
             return modelAndView;
         }

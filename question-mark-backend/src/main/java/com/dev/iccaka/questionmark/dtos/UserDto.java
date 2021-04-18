@@ -28,7 +28,7 @@ public class UserDto {
 
     private String university;
 
-    public UserDto(){
+    public UserDto() {
 
     }
 
