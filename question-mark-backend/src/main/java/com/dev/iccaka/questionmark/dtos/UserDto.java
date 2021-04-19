@@ -28,9 +28,7 @@ public class UserDto {
 
     private String university;
 
-    public UserDto() {
-
-    }
+    public UserDto() { }
 
     public String getEmail() {
         return email;

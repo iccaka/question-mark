@@ -50,7 +50,7 @@ public class UsersController {
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.ok("There's no user with such username.");
     }
 
-    @PostMapping("/register")
+    @PostMapping(value = "/register")
     public ModelAndView registerUser(@ModelAttribute("user") @Validated UserDto userDto,
                                      HttpServletRequest request, Errors errors) {
 
