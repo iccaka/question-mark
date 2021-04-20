@@ -11,5 +11,5 @@ public interface UsersRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
     @Query("SELECT u FROM User u WHERE lower(u.username) = :username")
-    Optional<User> findByUsername(String username);
+    Optional<User> getByUsername(String username);
 }

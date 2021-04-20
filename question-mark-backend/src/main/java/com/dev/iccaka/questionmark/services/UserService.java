@@ -5,7 +5,6 @@ import com.dev.iccaka.questionmark.entities.User;
 import com.dev.iccaka.questionmark.exceptions.UserAlreadyExistsException;
 import com.dev.iccaka.questionmark.repositories.UsersRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,7 @@ import java.util.Optional;
 @Service
 public class UserService implements IUserService {
 
-    @Autowired
-    private UsersRepository repository;
+    private final UsersRepository repository;
 
     public UserService(UsersRepository repository) {
         this.repository = repository;
@@ -27,13 +25,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<User> getById(Long id) {
         return this.repository.findById(id);
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
-        return this.repository.findByUsername(username);
+    public Optional<User> getByUsername(String username) {
+        return  this.repository.getByUsername(username);
     }
 
     @Override
