@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent],
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
+    MDBBootstrapModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
