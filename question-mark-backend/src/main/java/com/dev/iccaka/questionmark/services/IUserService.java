@@ -1,6 +1,6 @@
 package com.dev.iccaka.questionmark.services;
 
-import com.dev.iccaka.questionmark.dtos.UserDto;
+import com.dev.iccaka.questionmark.dtos.UserRegisterDto;
 import com.dev.iccaka.questionmark.entities.User;
 import com.dev.iccaka.questionmark.exceptions.UserAlreadyExistsException;
 
@@ -16,5 +16,5 @@ public interface IUserService {
 
     Optional<User> getByUsername(String username);
 
-    User registerUser(UserDto userDto) throws UserAlreadyExistsException;
+    User registerUser(UserRegisterDto userRegisterDto) throws UserAlreadyExistsException;
 }
