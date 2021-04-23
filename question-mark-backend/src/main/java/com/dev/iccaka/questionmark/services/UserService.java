@@ -1,6 +1,6 @@
 package com.dev.iccaka.questionmark.services;
 
-import com.dev.iccaka.questionmark.dtos.UserDto;
+import com.dev.iccaka.questionmark.dtos.UserRegisterDto;
 import com.dev.iccaka.questionmark.entities.User;
 import com.dev.iccaka.questionmark.exceptions.UserAlreadyExistsException;
 import com.dev.iccaka.questionmark.repositories.UsersRepository;
@@ -35,18 +35,25 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User registerUser(UserDto userDto) throws UserAlreadyExistsException {
-        if (this.emailExist(userDto.getEmail())) {
-            throw new UserAlreadyExistsException("There's an account with that email address: " + userDto.getEmail());
+    public User registerUser(UserRegisterDto userRegisterDto) throws UserAlreadyExistsException {
+        if (this.emailExist(userRegisterDto.getEmail())) {
+            throw new UserAlreadyExistsException("There's an account with that email address: " + userRegisterDto.getEmail());
+        }
+        if(this.usernameExist(userRegisterDto.getUsername())){
+            throw new UserAlreadyExistsException("There's an account with that username: " + userRegisterDto.getUsername());
         }
 
         ModelMapper modelMapper = new ModelMapper();
-        User user = modelMapper.map(userDto, User.class);
+        User user = modelMapper.map(userRegisterDto, User.class);
 
         return this.repository.save(user);
     }
 
     private boolean emailExist(String email) {
         return this.repository.findByEmail(email).isPresent();
+    }
+
+    private boolean usernameExist(String username){
+        return this.repository.findByUsername(username).isPresent();
     }
 }

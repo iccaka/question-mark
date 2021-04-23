@@ -1,22 +1,26 @@
 package com.dev.iccaka.questionmark.controllers;
 
-import com.dev.iccaka.questionmark.dtos.UserDto;
+import com.dev.iccaka.questionmark.dtos.UserRegisterDto;
 import com.dev.iccaka.questionmark.entities.User;
 import com.dev.iccaka.questionmark.exceptions.UserAlreadyExistsException;
 import com.dev.iccaka.questionmark.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping(value = "api/users")
 public class UsersController {
 
     ModelAndView modelAndView;
@@ -24,7 +28,7 @@ public class UsersController {
     @Autowired
     IUserService userService;
 
-    @GetMapping("/listAll")
+    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     public List<User> listUsers() {
         return userService.listUsers();
     }
@@ -50,17 +54,29 @@ public class UsersController {
         return result.isPresent() ? ResponseEntity.ok(result) : ResponseEntity.ok("There's no user with such username.");
     }
 
-    @PostMapping(value = "/register")
-    public ModelAndView registerUser(@ModelAttribute("user") @Validated UserDto userDto,
-                                     HttpServletRequest request, Errors errors) {
-
+    @RequestMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public ResponseEntity<?> registerUser(@Valid UserRegisterDto userRegisterDto) {
         try {
-            User registered = userService.registerUser(userDto);
-        } catch (UserAlreadyExistsException uaeEx) {
-            modelAndView.addObject("message", "An account for that username/email already exists!");
-            return modelAndView;
+            User registered = userService.registerUser(userRegisterDto);
+        } catch (UserAlreadyExistsException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
 
-        return new ModelAndView("successRegister", "user", userDto);
+        return ResponseEntity.ok("Registration successful!");
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+
+            errors.put(fieldName, errorMessage);
+        });
+
+        return errors;
     }
 }
