@@ -1,5 +1,5 @@
 # Run it from root directory
-# Run the script: <pwsh build_all_files.ps1>
+# Run the script: <pwsh run_project.ps1>
 
 Push-Location -Path "question-mark-ui/question-mark/src/app"
 ng build
